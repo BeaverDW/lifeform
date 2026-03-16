@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
-
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "생활폼",
@@ -16,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={cn("font-sans", inter.variable)}>
+    <html lang="ko">
       <head>
         <link
           rel="stylesheet"
@@ -25,7 +21,11 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
         />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased bg-gray-100">
+        <div className="mx-auto max-w-[480px] min-h-screen bg-white shadow-xl pb-20">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

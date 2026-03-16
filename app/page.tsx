@@ -1,11 +1,29 @@
+import Header from "@/app/components/Header";
+import HeroSection from "@/app/components/HeroSection";
+import BenefitsSection from "@/app/components/BenefitsSection";
+import TrustPoints from "@/app/components/TrustPoints";
+import Comparison from "@/app/components/Comparison";
+import ComboBenefits from "@/app/components/ComboBenefits";
+import Process from "@/app/components/Process";
+import FAQ from "@/app/components/FAQ";
+import ConsultForm from "@/app/components/ConsultForm";
+import FixedBottomBar from "@/app/components/FixedBottomBar";
+
 export default function Home() {
   return (
-    <div
-      className={
-        "bg-sky-700 px-4 py-2 text-white hover:bg-sky-800 sm:px-8 sm:py-3"
-      }
-    >
-      hello world
-    </div>
+    <>
+      <Header />
+      <main>
+        <HeroSection />
+        <BenefitsSection />
+        <TrustPoints />
+        <Comparison />
+        <ComboBenefits />
+        <Process />
+        <FAQ />
+        <ConsultForm />
+      </main>
+      <FixedBottomBar />
+    </>
   );
 }
