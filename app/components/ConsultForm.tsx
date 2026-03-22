@@ -1,16 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { Monitor, GlassWater } from "lucide-react";
+import { Wifi, Refrigerator } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import ScrollReveal from "./ScrollReveal";
 
 export default function ConsultForm() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [interests, setInterests] = useState({ internet: false, rental: false });
+  const [interests, setInterests] = useState({
+    internet: false,
+    rental: false,
+  });
   const [agreed, setAgreed] = useState(false);
 
   const toggleInterest = (key: "internet" | "rental") => {
@@ -23,15 +27,18 @@ export default function ConsultForm() {
   };
 
   return (
-    <section className="py-12 px-4 bg-gray-50">
-      <div className="max-w-screen-sm mx-auto">
-        <p className="text-center text-sm text-blue-500 font-semibold mb-2">
-          남들 다 받는 지원금,
-        </p>
-        <h2 className="text-center text-xl font-bold text-gray-900 mb-8">
-          혹시 나만 놓치고 있나요?
-        </h2>
+    <section className="bg-gray-50 px-5 py-20">
+      <div className="mx-auto max-w-screen-sm">
+        <ScrollReveal>
+          <p className="text-primary text-center text-[1.4rem] font-bold">
+            남들 다 받는 지원금,
+          </p>
+          <h2 className="mb-10 text-center text-[2rem] font-extrabold text-[#C8962D]">
+            혹시 나만 놓치고 있나요?
+          </h2>
+        </ScrollReveal>
 
+        <ScrollReveal delay={0.2}>
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
             type="text"
@@ -56,7 +63,7 @@ export default function ConsultForm() {
               onClick={() => toggleInterest("internet")}
               className="h-12 gap-2 rounded-lg text-sm font-medium"
             >
-              <Monitor className="w-5 h-5" />
+              <Wifi className="h-5 w-5" />
               인터넷 TV
             </Button>
             <Button
@@ -65,7 +72,7 @@ export default function ConsultForm() {
               onClick={() => toggleInterest("rental")}
               className="h-12 gap-2 rounded-lg text-sm font-medium"
             >
-              <GlassWater className="w-5 h-5" />
+              <Refrigerator className="h-5 w-5" />
               가전렌탈
             </Button>
           </div>
@@ -76,18 +83,22 @@ export default function ConsultForm() {
               checked={agreed}
               onCheckedChange={(checked) => setAgreed(checked === true)}
             />
-            <Label htmlFor="agree" className="text-xs text-gray-500 cursor-pointer">
+            <Label
+              htmlFor="agree"
+              className="cursor-pointer text-xs text-gray-500"
+            >
               개인정보 수집 및 이용에 동의합니다
             </Label>
           </div>
 
           <Button
             type="submit"
-            className="w-full h-14 rounded-lg text-base font-bold"
+            className="h-14 w-full rounded-lg text-base font-bold"
           >
             최대 지원금 확인하기
           </Button>
         </form>
+        </ScrollReveal>
       </div>
     </section>
   );
