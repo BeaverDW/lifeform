@@ -99,7 +99,7 @@ export default function HeroSection() {
 
         {/* 하단 영역 - 혜택 금액 */}
         <div className="flex flex-[48] flex-col items-center justify-center">
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-start gap-3">
             {checkItems.map((text, i) => (
               <motion.p
                 key={text}
@@ -132,44 +132,41 @@ export default function HeroSection() {
             ))}
           </div>
           <div className="mt-5 text-center">
-            <motion.p
-              className="text-[2.5rem] leading-relaxed font-extrabold text-yellow-400"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{
-                opacity: 1,
-                scale: [1, 1.05, 1],
-                textShadow: [
-                  "0 0 8px rgba(250,204,21,0.4)",
-                  "0 0 20px rgba(250,204,21,0.8)",
-                  "0 0 8px rgba(250,204,21,0.4)",
-                ],
-              }}
-              transition={{
-                opacity: { delay: 2.0, duration: 0.5 },
-                scale: {
-                  delay: 2.0,
-                  duration: 1.4,
-                  repeat: Infinity,
-                  ease: "easeInOut" as const,
-                },
-                textShadow: {
-                  delay: 2.0,
-                  duration: 1.4,
-                  repeat: Infinity,
-                  ease: "easeInOut" as const,
-                },
-              }}
-            >
-              최대 78만원
-            </motion.p>
-            <motion.p
-              className="text-[2.2rem] leading-relaxed font-extrabold text-white"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2.3, duration: 0.5, ease: "easeOut" }}
-            >
-              까지 차이납니다.
-            </motion.p>
+            <p className="flex items-baseline justify-center gap-1 whitespace-nowrap">
+              <motion.span
+                className="inline-block text-[2.5rem] font-extrabold text-yellow-400"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{
+                  opacity: 1,
+                  scale: [1, 1.05, 1],
+                  textShadow: [
+                    "0 0 8px rgba(250,204,21,0.4)",
+                    "0 0 20px rgba(250,204,21,0.8)",
+                    "0 0 8px rgba(250,204,21,0.4)",
+                  ],
+                }}
+                transition={{
+                  opacity: { delay: 2.0, duration: 0.5 },
+                  scale: {
+                    delay: 2.0,
+                    duration: 1.4,
+                    repeat: Infinity,
+                    ease: "easeInOut" as const,
+                  },
+                  textShadow: {
+                    delay: 2.0,
+                    duration: 1.4,
+                    repeat: Infinity,
+                    ease: "easeInOut" as const,
+                  },
+                }}
+              >
+                최대 78만원
+              </motion.span>
+              <span className="pl-2 text-[1.2rem] font-extrabold text-white sm:text-[1.6rem]">
+                까지 차이납니다.
+              </span>
+            </p>
           </div>
         </div>
 
