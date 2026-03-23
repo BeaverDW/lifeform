@@ -28,10 +28,10 @@ export default function ComboBenefits() {
       <ScrollReveal>
         <div className="text-center mb-10">
           <p className="text-[1.4rem] font-bold text-white">복잡한 비교는 끝!</p>
-          <p className="text-[2rem] font-extrabold text-white mt-1 leading-tight">
+          <p className="text-[1.6rem] sm:text-[2rem] font-extrabold text-white mt-1 leading-tight">
             오직 생활폼에서만 가능한
           </p>
-          <p className="text-[2.2rem] font-black text-yellow-400 leading-tight">
+          <p className="text-[1.8rem] sm:text-[2.2rem] font-black text-yellow-400 leading-tight">
             결합 혜택 리스트
           </p>
         </div>

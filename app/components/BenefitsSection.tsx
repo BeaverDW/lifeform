@@ -31,7 +31,7 @@ export default function BenefitsSection() {
         <ScrollReveal>
           <div className="mb-10 w-full pt-16 pb-4 text-center">
             <p className="text-[1.4rem] font-bold text-white">
-              똑같은 통신, 똑같은 TV인데
+              같은 상품, 같은 통신사인데
             </p>
             <span className="relative z-10 mt-1 inline-block text-[1.6rem] font-extrabold text-white">
               왜 대리점마다 말이 다를까요?
@@ -42,50 +42,56 @@ export default function BenefitsSection() {
 
         {/* 비교 카드 */}
         <ScrollReveal delay={0.2}>
-        <div className="relative mb-10 grid w-full grid-cols-2 gap-3">
-          {/* 일반 대리점 */}
-          <div className="rounded-lg bg-gray-500/50 p-5 hover:shadow-[0_4px_20px_rgba(200,150,45,0.3)] hover:-translate-y-1 transition-all duration-300">
-            <p className="mb-2 text-center text-lg font-bold text-white/80">
-              일반 대리점
-            </p>
-            <div className="mb-4 h-px bg-white/20" />
-            <div className="space-y-5">
-              {leftItems.map((item, i) => (
-                <div key={i} className="flex flex-col items-center text-center">
-                  <Check className="mb-1 h-5 w-5 text-white/40" />
-                  <p className="text-base leading-snug whitespace-pre-line text-white/60">
-                    {item}
-                  </p>
-                </div>
-              ))}
+          <div className="relative mb-10 grid w-full grid-cols-2 gap-3">
+            {/* 일반 대리점 */}
+            <div className="rounded-lg bg-gray-500/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(200,150,45,0.3)]">
+              <p className="mb-2 text-center text-lg font-bold text-white/80">
+                일반 대리점
+              </p>
+              <div className="mb-4 h-px bg-white/20" />
+              <div className="space-y-5">
+                {leftItems.map((item, i) => (
+                  <div
+                    key={i}
+                    className="flex flex-col items-center text-center"
+                  >
+                    <Check className="mb-1 h-5 w-5 text-white/40" />
+                    <p className="text-base leading-snug whitespace-pre-line text-white/60">
+                      {item}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* 생활폼 */}
-          <div className="rounded-lg bg-[#3d61f4] p-5 hover:shadow-[0_4px_20px_rgba(200,150,45,0.3)] hover:-translate-y-1 transition-all duration-300">
-            <p className="mb-2 text-center text-lg font-extrabold text-white">
-              생활폼
-            </p>
-            <div className="mb-4 h-px bg-white/30" />
-            <div className="space-y-5">
-              {rightItems.map((item, i) => (
-                <div key={i} className="flex flex-col items-center text-center">
-                  <Check className="mb-1 h-5 w-5 text-white" />
-                  <p className="text-base leading-snug font-medium whitespace-pre-line text-white">
-                    {item}
-                  </p>
-                </div>
-              ))}
+            {/* 생활폼 */}
+            <div className="rounded-lg bg-[#3d61f4] p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(200,150,45,0.3)]">
+              <p className="mb-2 text-center text-lg font-extrabold text-white">
+                생활폼
+              </p>
+              <div className="mb-4 h-px bg-white/30" />
+              <div className="space-y-5">
+                {rightItems.map((item, i) => (
+                  <div
+                    key={i}
+                    className="flex flex-col items-center text-center"
+                  >
+                    <Check className="mb-1 h-5 w-5 text-white" />
+                    <p className="text-base leading-snug font-medium whitespace-pre-line text-white">
+                      {item}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* VS - 카드 위에 오버레이 */}
-          <div className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full border bg-[#3d61f4] shadow-lg">
-              <span className="font-extrabold text-white">VS</span>
+            {/* VS - 카드 위에 오버레이 */}
+            <div className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full border bg-[#3d61f4] shadow-lg">
+                <span className="font-extrabold text-white">VS</span>
+              </div>
             </div>
           </div>
-        </div>
         </ScrollReveal>
 
         {/* 하단 텍스트 */}

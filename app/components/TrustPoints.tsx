@@ -15,7 +15,7 @@ export default function TrustPoints() {
               제로
             </span>
           </p>
-          <p className="text-[2.5rem] font-black text-[#0B1033]">
+          <p className="text-[2rem] sm:text-[2.5rem] font-black text-[#0B1033]">
             압도적인 숫자 차이!
           </p>
         </div>

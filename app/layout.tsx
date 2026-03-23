@@ -1,9 +1,13 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "생활폼",
   description: " 인터넷/TV/정수기/가전렌탈 지원금 플랫폼",
+};
+
+export const viewport = {
+  viewportFit: "cover" as const,
 };
 
 export default function RootLayout({
@@ -22,7 +26,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased bg-gray-100">
-        <div className="mx-auto max-w-[480px] min-h-screen bg-white shadow-xl pb-20">
+        <div className="mx-auto max-w-[480px] min-h-dvh bg-white shadow-xl pb-20">
           {children}
         </div>
       </body>

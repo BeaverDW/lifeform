@@ -3,11 +3,11 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-[#0B1033]">
+    <header className="sticky top-0 z-50 bg-white">
       <div className="flex h-14 items-center justify-center px-4">
         <Link href={"/"}>
           <Image
-            src={"/logo.svg"}
+            src={"/logo.png"}
             alt={"생활폼 로고"}
             width={120}
             height={36}

@@ -15,6 +15,7 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
+        <ConsultForm />
         <BenefitsSection />
         <TrustPoints />
         <Comparison />
