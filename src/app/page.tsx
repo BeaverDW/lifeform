@@ -7,7 +7,9 @@ import ComboBenefits from "@/components/ComboBenefits";
 import Process from "@/components/Process";
 import FAQ from "@/components/FAQ";
 import ConsultForm from "@/components/ConsultForm";
+import Reviews from "@/components/Reviews";
 import FixedBottomBar from "@/components/FixedBottomBar";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -21,9 +23,11 @@ export default function Home() {
         <Comparison />
         <ComboBenefits />
         <Process />
+        <Reviews />
         <FAQ />
         <ConsultForm />
       </main>
+      <Footer />
       <FixedBottomBar />
     </>
   );

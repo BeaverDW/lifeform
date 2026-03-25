@@ -1,12 +1,35 @@
 "use client";
 
 import { useState } from "react";
-import { Wifi, Refrigerator } from "lucide-react";
+import { Refrigerator, Wifi } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { privacyConsent } from "@/lib/policies";
 import ScrollReveal from "./ScrollReveal";
+
+function getUtmParams() {
+  if (typeof window === "undefined") return {};
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source: params.get("utm_source"),
+    utm_medium: params.get("utm_medium"),
+    utm_campaign: params.get("utm_campaign"),
+    utm_term: params.get("utm_term"),
+    utm_content: params.get("utm_content"),
+  };
+}
 
 export default function ConsultForm() {
   const [name, setName] = useState("");
@@ -16,14 +39,46 @@ export default function ConsultForm() {
     rental: false,
   });
   const [agreed, setAgreed] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const referrer = typeof window !== "undefined" ? document.referrer : "";
 
   const toggleInterest = (key: "internet" | "rental") => {
     setInterests((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: 제출 로직
+    if (!name || !phone) {
+      toast.warning("이름과 연락처를 입력해주세요.");
+      return;
+    }
+    if (!agreed) {
+      toast.warning("개인정보 수집 및 이용에 동의해주세요.");
+      return;
+    }
+
+    setSubmitting(true);
+    const utm = getUtmParams();
+
+    const { error } = await supabase.from("consultations").insert({
+      name,
+      phone,
+      interest_internet: interests.internet,
+      interest_rental: interests.rental,
+      agreed,
+      ...utm,
+      referrer: referrer || null,
+    });
+
+    setSubmitting(false);
+
+    if (error) {
+      toast.error("제출에 실패했습니다. 다시 시도해주세요.");
+      return;
+    }
+
+    setSubmitted(true);
   };
 
   return (
@@ -39,65 +94,91 @@ export default function ConsultForm() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.2}>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <Input
-            type="text"
-            placeholder="이름"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="h-12 rounded-lg bg-white text-sm"
-          />
+          {submitted ? (
+            <div className="rounded-lg bg-white p-8 text-center">
+              <p className="text-primary text-lg font-bold">
+                신청이 완료되었습니다!
+              </p>
+              <p className="mt-2 text-sm text-gray-500">
+                빠른 시간 내에 연락드리겠습니다.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <Input
+                type="text"
+                placeholder="이름"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="h-12 rounded-lg bg-white text-sm"
+              />
 
-          <Input
-            type="tel"
-            placeholder="연락처"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            className="h-12 rounded-lg bg-white text-sm"
-          />
+              <Input
+                type="tel"
+                placeholder="연락처"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="h-12 rounded-lg bg-white text-sm"
+              />
 
-          <div className="grid grid-cols-2 gap-3">
-            <Button
-              type="button"
-              variant={interests.internet ? "default" : "outline"}
-              onClick={() => toggleInterest("internet")}
-              className="h-12 gap-2 rounded-lg text-sm font-medium"
-            >
-              <Wifi className="h-5 w-5" />
-              인터넷 TV
-            </Button>
-            <Button
-              type="button"
-              variant={interests.rental ? "default" : "outline"}
-              onClick={() => toggleInterest("rental")}
-              className="h-12 gap-2 rounded-lg text-sm font-medium"
-            >
-              <Refrigerator className="h-5 w-5" />
-              가전렌탈
-            </Button>
-          </div>
+              <div className="grid grid-cols-2 gap-3">
+                <Button
+                  type="button"
+                  variant={interests.internet ? "default" : "outline"}
+                  onClick={() => toggleInterest("internet")}
+                  className="h-12 gap-2 rounded-lg text-sm font-medium"
+                >
+                  <Wifi className="h-5 w-5" />
+                  인터넷 TV
+                </Button>
+                <Button
+                  type="button"
+                  variant={interests.rental ? "default" : "outline"}
+                  onClick={() => toggleInterest("rental")}
+                  className="h-12 gap-2 rounded-lg text-sm font-medium"
+                >
+                  <Refrigerator className="h-5 w-5" />
+                  가전렌탈
+                </Button>
+              </div>
 
-          <div className="flex items-center gap-2">
-            <Checkbox
-              id="agree"
-              checked={agreed}
-              onCheckedChange={(checked) => setAgreed(checked === true)}
-            />
-            <Label
-              htmlFor="agree"
-              className="cursor-pointer text-xs text-gray-500"
-            >
-              개인정보 수집 및 이용에 동의합니다
-            </Label>
-          </div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    id="agree"
+                    checked={agreed}
+                    onCheckedChange={(checked) => setAgreed(checked === true)}
+                  />
+                  <Label
+                    htmlFor="agree"
+                    className="cursor-pointer text-xs text-gray-500"
+                  >
+                    개인정보 수집 및 이용에 동의합니다
+                  </Label>
+                </div>
+                <Dialog>
+                  <DialogTrigger className="text-[10px] text-gray-400 underline underline-offset-2">
+                    내용보기
+                  </DialogTrigger>
+                  <DialogContent className="max-h-[80vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle>개인정보 수집 및 이용 동의</DialogTitle>
+                      <DialogDescription asChild>
+                        <div className="pt-2">{privacyConsent}</div>
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
+              </div>
 
-          <Button
-            type="submit"
-            className="h-14 w-full rounded-lg text-base font-bold"
-          >
-            최대 지원금 확인하기
-          </Button>
-        </form>
+              <Button
+                type="submit"
+                className="h-14 w-full rounded-lg text-base font-bold"
+              >
+                {submitting ? "제출 중..." : "최대 지원금 확인하기"}
+              </Button>
+            </form>
+          )}
         </ScrollReveal>
       </div>
     </section>
