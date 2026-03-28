@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -61,19 +60,23 @@ export default function ConsultForm() {
     setSubmitting(true);
     const utm = getUtmParams();
 
-    const { error } = await supabase.from("consultations").insert({
-      name,
-      phone,
-      interest_internet: interests.internet,
-      interest_rental: interests.rental,
-      agreed,
-      ...utm,
-      referrer: referrer || null,
+    const res = await fetch("/api/consult", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        phone,
+        interest_internet: interests.internet,
+        interest_rental: interests.rental,
+        agreed,
+        ...utm,
+        referrer: referrer || null,
+      }),
     });
 
     setSubmitting(false);
 
-    if (error) {
+    if (!res.ok) {
       toast.error("제출에 실패했습니다. 다시 시도해주세요.");
       return;
     }
