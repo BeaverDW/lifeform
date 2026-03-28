@@ -71,6 +71,7 @@ export default function ConsultForm() {
         agreed,
         ...utm,
         referrer: referrer || null,
+        page_url: window.location.href,
       }),
     });
 

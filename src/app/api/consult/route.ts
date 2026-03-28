@@ -36,6 +36,7 @@ export async function POST(request: NextRequest) {
     utm_term: utm.utm_term ?? null,
     utm_content: utm.utm_content ?? null,
     referrer: utm.referrer ?? null,
+    page_url: utm.page_url ?? null,
     ip,
     user_agent: userAgent,
     region,
