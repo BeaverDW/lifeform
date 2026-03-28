@@ -17,8 +17,10 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport = {
-  viewportFit: "cover" as const,
+export const viewport: Viewport = {
+  viewportFit: "cover",
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({

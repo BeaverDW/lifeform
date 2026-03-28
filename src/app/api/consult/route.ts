@@ -14,8 +14,17 @@ export async function POST(request: NextRequest) {
   const userAgent = request.headers.get("user-agent") ?? null;
   const region = request.headers.get("x-vercel-ip-country") ?? null;
 
-  const { name, phone, interest_internet, interest_rental, agreed, ...utm } =
-    body;
+  const {
+    name,
+    phone,
+    interest_internet,
+    interest_tv,
+    interest_purifier,
+    interest_rental,
+    preferred_time,
+    agreed,
+    ...utm
+  } = body;
 
   if (!name || !phone || !agreed) {
     return NextResponse.json(
@@ -28,7 +37,10 @@ export async function POST(request: NextRequest) {
     name,
     phone,
     interest_internet: interest_internet ?? false,
+    interest_tv: interest_tv ?? false,
+    interest_purifier: interest_purifier ?? false,
     interest_rental: interest_rental ?? false,
+    preferred_time: preferred_time ?? null,
     agreed,
     utm_source: utm.utm_source ?? null,
     utm_medium: utm.utm_medium ?? null,
