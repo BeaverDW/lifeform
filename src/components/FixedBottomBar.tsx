@@ -20,21 +20,25 @@ export default function FixedBottomBar() {
           최대 지원금 확인하기
         </Button>
 
-        <a href={KAKAO_CHANNEL_URL} target="_blank" rel="noopener noreferrer">
+        <a href={KAKAO_CHANNEL_URL} target="_blank" rel="noopener noreferrer" aria-label="카카오톡 상담">
           <Button
             type="button"
             variant="outline"
             className="h-12 w-12 rounded-xl border-[#FEE500] bg-[#FEE500] p-0 hover:bg-[#FDD800]"
+            aria-hidden="true"
+            tabIndex={-1}
           >
             <MessageCircle className="h-5 w-5 text-[#3C1E1E]" />
           </Button>
         </a>
 
-        <a href={PHONE_NUMBER}>
+        <a href={PHONE_NUMBER} aria-label="전화 상담 010-5007-1966">
           <Button
             type="button"
             variant="outline"
             className="h-12 w-12 rounded-xl border-green-500 bg-green-500 p-0 hover:bg-green-600"
+            aria-hidden="true"
+            tabIndex={-1}
           >
             <Phone className="h-5 w-5 text-white" />
           </Button>

@@ -112,22 +112,27 @@ export default function ConsultForm() {
               <Input
                 type="text"
                 placeholder="이름"
+                aria-label="이름"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="h-12 rounded-lg bg-white text-sm"
+                className="h-12 rounded-lg bg-white"
               />
 
               <Input
                 type="tel"
+                inputMode="numeric"
                 placeholder="연락처"
+                aria-label="연락처"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="h-12 rounded-lg bg-white text-sm"
+                className="h-12 rounded-lg bg-white"
               />
 
               <div className="grid grid-cols-2 gap-3">
                 <Button
                   type="button"
+                  role="checkbox"
+                  aria-checked={interests.internet}
                   variant={interests.internet ? "default" : "outline"}
                   onClick={() => toggleInterest("internet")}
                   className="h-12 gap-2 rounded-lg text-sm font-medium"
@@ -137,6 +142,8 @@ export default function ConsultForm() {
                 </Button>
                 <Button
                   type="button"
+                  role="checkbox"
+                  aria-checked={interests.rental}
                   variant={interests.rental ? "default" : "outline"}
                   onClick={() => toggleInterest("rental")}
                   className="h-12 gap-2 rounded-lg text-sm font-medium"

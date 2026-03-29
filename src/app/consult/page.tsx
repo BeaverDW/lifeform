@@ -22,7 +22,7 @@ function getUtmParams() {
 
 const PRODUCTS = [
   { key: "internet", label: "인터넷" },
-  { key: "tv", label: "TV" },
+  { key: "tv", label: "인터넷+TV" },
   { key: "purifier", label: "정수기" },
   { key: "rental", label: "이외 가전렌탈" },
 ] as const;
@@ -76,7 +76,7 @@ export default function ConsultPage() {
       body: JSON.stringify({
         name,
         phone,
-        interest_internet: products.internet,
+        interest_internet: products.internet || products.tv,
         interest_tv: products.tv,
         interest_purifier: products.purifier,
         interest_rental: products.rental,
@@ -136,21 +136,22 @@ export default function ConsultPage() {
             placeholder="성함을 입력해주세요"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-3 h-12 rounded-lg border-gray-200 bg-gray-50 text-sm"
+            className="mt-3 h-12 rounded-lg border-gray-200 bg-gray-50"
           />
         </div>
 
         {/* 2. 연락처 */}
         <div className="rounded-xl bg-white p-5 shadow-sm">
           <Label className="text-sm font-semibold">
-            <span className="text-red-500">*</span> 2. 연락처 (ex.010-0000-0000)
+            <span className="text-red-500">*</span> 2. 연락처 (ex.01012345678)
           </Label>
           <Input
             type="tel"
-            placeholder="ex. 010-0000-0000"
+            inputMode="numeric"
+            placeholder="연락처를 입력해주세요"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="mt-3 h-12 rounded-lg border-gray-200 bg-gray-50 text-sm"
+            className="mt-3 h-12 rounded-lg border-gray-200 bg-gray-50"
           />
         </div>
 
@@ -162,11 +163,13 @@ export default function ConsultPage() {
               (복수선택)
             </span>
           </Label>
-          <div className="mt-3 flex flex-col gap-2">
+          <div className="mt-3 flex flex-col gap-2" role="group" aria-label="문의 상품 선택">
             {PRODUCTS.map(({ key, label }) => (
               <button
                 key={key}
                 type="button"
+                role="checkbox"
+                aria-checked={products[key]}
                 onClick={() => toggleProduct(key)}
                 className={`flex items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm font-medium transition-colors ${
                   products[key]
@@ -207,11 +210,13 @@ export default function ConsultPage() {
           <p className="mt-1 text-xs text-gray-400">
             대략 시간 체크해주시면 직접 전화드리겠습니다!
           </p>
-          <div className="mt-3 flex flex-col gap-2">
+          <div className="mt-3 flex flex-col gap-2" role="radiogroup" aria-label="통화 가능 시간대 선택">
             {TIME_SLOTS.map((slot) => (
               <button
                 key={slot}
                 type="button"
+                role="radio"
+                aria-checked={preferredTime === slot}
                 onClick={() => setPreferredTime(slot)}
                 className={`flex items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm font-medium transition-colors ${
                   preferredTime === slot
