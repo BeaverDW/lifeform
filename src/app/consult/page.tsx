@@ -28,11 +28,11 @@ const PRODUCTS = [
 ] as const;
 
 const TIME_SLOTS = [
-  "오전 10시 ~ 12시",
-  "오후 1시 ~ 3시",
-  "오후 4시 ~ 6시",
-  "오후 6시 이후",
-  "기타",
+  "오전 (10:00 ~ 12:00)",
+  "점심 이후 (13:00 ~ 15:00)",
+  "오후 (15:00 ~ 18:00)",
+  "저녁 (18:00 이후)",
+  "언제든 가능 (빠른 연락 원함)",
 ] as const;
 
 type ProductKey = (typeof PRODUCTS)[number]["key"];
