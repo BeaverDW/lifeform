@@ -21,7 +21,6 @@ export async function POST(request: NextRequest) {
     interest_tv,
     interest_purifier,
     interest_rental,
-    preferred_time,
     agreed,
     ...utm
   } = body;
@@ -40,7 +39,6 @@ export async function POST(request: NextRequest) {
     interest_tv: interest_tv ?? false,
     interest_purifier: interest_purifier ?? false,
     interest_rental: interest_rental ?? false,
-    preferred_time: preferred_time ?? null,
     agreed,
     utm_source: utm.utm_source ?? null,
     utm_medium: utm.utm_medium ?? null,

@@ -27,14 +27,6 @@ const PRODUCTS = [
   { key: "rental", label: "이외 가전렌탈" },
 ] as const;
 
-const TIME_SLOTS = [
-  "오전 (10:00 ~ 12:00)",
-  "점심 이후 (13:00 ~ 15:00)",
-  "오후 (15:00 ~ 18:00)",
-  "저녁 (18:00 이후)",
-  "언제든 가능 (빠른 연락 원함)",
-] as const;
-
 type ProductKey = (typeof PRODUCTS)[number]["key"];
 
 export default function ConsultPage() {
@@ -46,7 +38,6 @@ export default function ConsultPage() {
     purifier: false,
     rental: false,
   });
-  const [preferredTime, setPreferredTime] = useState("");
   const [agreed, setAgreed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -80,7 +71,6 @@ export default function ConsultPage() {
         interest_tv: products.tv,
         interest_purifier: products.purifier,
         interest_rental: products.rental,
-        preferred_time: preferredTime || null,
         agreed,
         ...utm,
         referrer: referrer || null,
@@ -202,49 +192,10 @@ export default function ConsultPage() {
           </div>
         </div>
 
-        {/* 4. 통화 가능한 시간대 */}
+        {/* 4. 개인정보 수집 및 이용 동의 */}
         <div className="rounded-xl bg-white p-5 shadow-sm">
           <Label className="text-sm font-semibold">
-            4. 통화 가능한 시간대
-          </Label>
-          <p className="mt-1 text-xs text-gray-400">
-            대략 시간 체크해주시면 직접 전화드리겠습니다!
-          </p>
-          <div className="mt-3 flex flex-col gap-2" role="radiogroup" aria-label="통화 가능 시간대 선택">
-            {TIME_SLOTS.map((slot) => (
-              <button
-                key={slot}
-                type="button"
-                role="radio"
-                aria-checked={preferredTime === slot}
-                onClick={() => setPreferredTime(slot)}
-                className={`flex items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm font-medium transition-colors ${
-                  preferredTime === slot
-                    ? "border-primary bg-primary/5 text-primary"
-                    : "border-gray-200 bg-gray-50 text-gray-600"
-                }`}
-              >
-                <span
-                  className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
-                    preferredTime === slot
-                      ? "border-primary bg-primary"
-                      : "border-gray-300 bg-white"
-                  }`}
-                >
-                  {preferredTime === slot && (
-                    <span className="h-2 w-2 rounded-full bg-white" />
-                  )}
-                </span>
-                {slot}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* 5. 개인정보 수집 및 이용 동의 */}
-        <div className="rounded-xl bg-white p-5 shadow-sm">
-          <Label className="text-sm font-semibold">
-            <span className="text-red-500">*</span> 5. 개인정보 수집 및 이용 동의
+            <span className="text-red-500">*</span> 4. 개인정보 수집 및 이용 동의
           </Label>
           <div className="mt-3 rounded-lg bg-gray-50 p-4 text-xs leading-relaxed text-gray-500">
             <p>
