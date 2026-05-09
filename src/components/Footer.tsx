@@ -36,19 +36,55 @@ export default function Footer() {
           <p>대표자: 신용석</p>
           <p>사업자명: 비더퍼스트</p>
           <p>사업자등록번호: 434-17-00711</p>
-          <p>대표번호: <a href="tel:010-5007-1966" className="underline underline-offset-2 hover:text-gray-700">010-5007-1966</a></p>
-          <p>주소: 경기 시흥시 서울대학로278번길 34 시흥배곧 아브뉴프랑 센트럴 옐로우 413호</p>
+          <p>
+            대표번호:{" "}
+            <a
+              href="tel:010-7664-5777"
+              className="underline underline-offset-2 hover:text-gray-700"
+            >
+              010-7664-5777
+            </a>
+          </p>
+          <p>
+            주소: 경기 시흥시 서울대학로278번길 34 시흥배곧 아브뉴프랑 센트럴
+            옐로우 413호
+          </p>
         </div>
 
         <div className="space-y-1">
-          <p>개인정보 책임관리자: 신용석 (<a href="mailto:sinysys7@naver.com" className="underline underline-offset-2 hover:text-gray-700">sinysys7@naver.com</a>)</p>
-          <p>광고제휴문의: <a href="mailto:sinysys7@naver.com" className="underline underline-offset-2 hover:text-gray-700">sinysys7@naver.com</a></p>
-          <p>CS 고객센터: <a href="mailto:sinysys7@naver.com" className="underline underline-offset-2 hover:text-gray-700">sinysys7@naver.com</a></p>
+          <p>
+            개인정보 책임관리자: 신용석 (
+            <a
+              href="mailto:sinysys7@naver.com"
+              className="underline underline-offset-2 hover:text-gray-700"
+            >
+              sinysys7@naver.com
+            </a>
+            )
+          </p>
+          <p>
+            광고제휴문의:{" "}
+            <a
+              href="mailto:sinysys7@naver.com"
+              className="underline underline-offset-2 hover:text-gray-700"
+            >
+              sinysys7@naver.com
+            </a>
+          </p>
+          <p>
+            CS 고객센터:{" "}
+            <a
+              href="mailto:sinysys7@naver.com"
+              className="underline underline-offset-2 hover:text-gray-700"
+            >
+              sinysys7@naver.com
+            </a>
+          </p>
         </div>
 
         <p className="text-[11px] text-gray-400">
-          (주)비더퍼스트는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 상품,
-          상품정보, 거래에 관한 의무와 책임은 거래당사자에게 있습니다.
+          (주)비더퍼스트는 통신판매중개자이며 통신판매의 당사자가 아닙니다.
+          상품, 상품정보, 거래에 관한 의무와 책임은 거래당사자에게 있습니다.
         </p>
 
         <div className="flex flex-wrap gap-x-3 gap-y-1 border-t border-gray-200 pt-4">

@@ -4,7 +4,7 @@ import { MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const KAKAO_CHANNEL_URL = "https://pf.kakao.com/_EmvxhX";
-const PHONE_NUMBER = "tel:010-5007-1966";
+const PHONE_NUMBER = "tel:010-7664-5777";
 
 export default function FixedBottomBar() {
   return (
@@ -14,13 +14,21 @@ export default function FixedBottomBar() {
           className="h-12 flex-1 rounded-xl text-base font-bold"
           onClick={() => {
             const forms = document.querySelectorAll("form");
-            forms[forms.length - 1]?.scrollIntoView({ behavior: "smooth", block: "center" });
+            forms[forms.length - 1]?.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
           }}
         >
           최대 지원금 확인하기
         </Button>
 
-        <a href={KAKAO_CHANNEL_URL} target="_blank" rel="noopener noreferrer" aria-label="카카오톡 상담">
+        <a
+          href={KAKAO_CHANNEL_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="카카오톡 상담"
+        >
           <Button
             type="button"
             variant="outline"
@@ -32,7 +40,7 @@ export default function FixedBottomBar() {
           </Button>
         </a>
 
-        <a href={PHONE_NUMBER} aria-label="전화 상담 010-5007-1966">
+        <a href={PHONE_NUMBER} aria-label="전화 상담 010-7664-5777">
           <Button
             type="button"
             variant="outline"
